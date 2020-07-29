@@ -1,4 +1,12 @@
+/**
+ * Create a new TlvEncoder with an initialCapacity for the encoding buffer.
+ * @constructor
+ * @param {number} initialCapacity (optional) The initial capacity of the
+ * encoding buffer. If omitted, use a default value.
+ */
 export class TlvEncoder {
+    constructor(initialCapacity: number);
+
     /**
      * Get the number of bytes that have been written to the output.  You can
      * save this number, write sub TLVs, then subtract the new length from this

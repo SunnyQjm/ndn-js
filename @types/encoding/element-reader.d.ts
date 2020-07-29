@@ -1,4 +1,6 @@
 export class ElementReader {
+    constructor(elementListener: any);
+
     /**
      * Continue to read data until the end of an element, then call
      * this.elementListener_.onReceivedElement(element). The buffer passed to
@@ -7,6 +9,4 @@ export class ElementReader {
      * @param {Buffer} data The Buffer with the incoming element's bytes.
      */
     onReceivedData(data: Buffer): void;
-
-
 }

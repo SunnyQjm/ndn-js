@@ -2,9 +2,13 @@ import {
     DecodingException
 } from '../decoding-exception';
 
+/**
+ * Create a new TlvDecoder for decoding the input in the NDN-TLV wire format.
+ * @constructor
+ * @param {Buffer} input The buffer with the bytes to decode.
+ */
 export class TlvDecoder {
-    input: Buffer;
-    offset: 0;
+    constructor(input: Buffer);
 
     /**
      * Decode VAR-NUMBER in NDN-TLV and return it. Update offset.

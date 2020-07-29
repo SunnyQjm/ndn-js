@@ -1,4 +1,6 @@
 export class OID {
+    constructor(oid: string | OID);
+
     getIntegerList(): number[];
 
     setIntegerList(oid: number[]): void;
