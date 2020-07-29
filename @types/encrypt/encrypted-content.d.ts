@@ -10,7 +10,7 @@
 import {KeyLocator} from "../key-locator";
 import {Name} from "../name";
 import {Blob} from "../util";
-import {WireFormat} from "../encoding/wire-format";
+import {WireFormat} from "../encoding";
 
 export class EncryptedContent {
     /**

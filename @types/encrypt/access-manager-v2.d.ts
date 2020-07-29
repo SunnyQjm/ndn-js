@@ -28,6 +28,33 @@
  * publish the KEK and KDK Data packets.
  * @constructor
  */
-export class AccessManagerV2 {
+import {PibIdentity} from "../security/pib/pib-identity";
+import {Name} from "../name";
+import {KeyChain} from "../key-chain";
+import {Face} from "../face";
+import {CertificateV2} from "../security/v2/certificate-v2";
+import {Data} from "../data";
 
+export class AccessManagerV2 {
+    static DEFAULT_KEK_FRESHNESS_PERIOD_MS: number;
+    static DEFAULT_KDK_FRESHNESS_PERIOD_MS: number;
+
+    constructor(identity: PibIdentity, dataset: Name, keyChain: KeyChain, face: Face);
+
+    shutdown(): void;
+
+    /**
+     * Authorize a member identified by memberCertificate to decrypt data under
+     * the policy.
+     * @param {CertificateV2} memberCertificate The certificate that identifies the
+     * member to authorize.
+     * @return {Data} The published KDK Data packet.
+     */
+    addMember(memberCertificate: CertificateV2): Data;
+
+    /**
+     * Get the number of packets stored in in-memory storage.
+     * @return {number} The number of packets.
+     */
+    size(): number;
 }

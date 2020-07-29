@@ -12,6 +12,8 @@ export class Encryptor {
     static NAME_COMPONENT_D_KEY: Name.Component;
     static NAME_COMPONENT_C_KEY: Name.Component;
 
+    constructor(value: any);
+
     /**
      * Prepare an encrypted data packet by encrypting the payload using the key
      * according to the params. In addition, this prepares the encoded

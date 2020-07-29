@@ -4,6 +4,11 @@ import {Name} from "./name";
 import {SyncPromise, Blob} from './util';
 import {Signature} from "./signature";
 import {WireFormat} from "./encoding/wire-format";
+import {CertificateV2} from "./security/v2/certificate-v2";
+import {PibIdentity} from "./security/pib/pib-identity";
+import {PibKey} from "./security/pib/pib-key";
+import {KeyParams} from "./security/key-params";
+import {SigningInfo} from "./security/signing-info";
 
 export class KeyChain {
     constructor();
@@ -423,20 +428,19 @@ export class KeyChain {
     /**
      * Sign the target. If it is a Data or Interest object, set its signature. If it
      * is a Buffer, produce a Signature object.
-     * @param {Data|Interest|Buffer} target If this is a Data object, wire encode
      * for signing, replace its Signature object based on the type of key and other
      * info in the SigningInfo params or default identity, and update the
      * wireEncoding. If this is an Interest object, wire encode for signing, append
      * a SignatureInfo to the Interest name, sign the name components and append a
      * final name component with the signature bits. If it is a buffer, sign it and
      * return a Signature object.
-     * @param {SigningInfo|Name} paramsOrCertificateName (optional) If a SigningInfo,
      * it is the signing parameters. If a Name, it is the certificate name of the
      * key to use for signing. If omitted and this is a security v1 KeyChain then
      * use the IdentityManager to get the default identity. Otherwise, use the PIB
      * to get the default key of the default identity.
-     * @param {WireFormat} wireFormat (optional) A WireFormat object used to encode
      * the input. If omitted, use WireFormat getDefaultWireFormat().
+     * @param interest
+     * @param params
      * @param {function} onComplete (optional) If target is a Data object, this calls
      * onComplete(data) with the supplied Data object which has been modified to set
      * its signature. If target is an Interest object, this calls
@@ -907,20 +911,8 @@ export class KeyChain {
 export class Pib {
 }
 
-export class PibIdentity {
-}
-
-export class PibKey {
-}
-
-export class KeyParams {
-}
-
 export class Certificate {
 
-}
-
-export class CertificateV2 {
 }
 
 export class Tpm {
@@ -940,23 +932,4 @@ export class TpmBackEnd {
 
 export class Reason {
 
-}
-
-export class SigningInfo {
-    constructor(signerType: SigningInfo.SignerType, signerName: Name);
-    constructor(arg?: SigningInfo | PibIdentity | PibKey | string);
-
-    getSignerType(): SigningInfo.SignerType;
-
-    getSignerName(): Name;
-}
-
-export namespace SigningInfo {
-    enum SignerType {
-        NULL = 0,
-        ID = 1,
-        KEY = 2,
-        CERT = 3,
-        SHA256 = 4,
-    }
 }
