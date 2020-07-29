@@ -1,19 +1,26 @@
 {
-  "name": "ndn-js",
+  "name": "typed-ndn-js",
   "version": "0.19.0",
   "description": "A JavaScript client library for Named Data Networking",
-  "main": "index.js",
+  "main": "dist/ndn-js.js",
+  "types": "./@types/index.d.ts",
+  "files": [
+    "dist/ndn-js.js",
+    "@types",
+    "README.md"
+  ],
   "directories": {
     "example": "examples",
     "test": "tests"
   },
   "scripts": {
     "doc": "jsdoc -c doc/conf.json",
-    "test": "cd tests/node/unit-tests ; mocha . --timeout 10000 ; cd ../../.."
+    "test": "cd tests/node/unit-tests ; mocha . --timeout 10000 ; cd ../../..",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/named-data/ndn-js"
+    "url": "https://github.com/SunnyQjm/ndn-js"
   },
   "keywords": [
     "NDN"
@@ -25,15 +32,14 @@
   },
   "author": "UCLA",
   "license": "LGPL-3.0+",
-  "bugs": {
-    "url": "https://github.com/named-data/ndn-js/issues"
-  },
   "dependencies": {
     "jsbn": "*",
     "protobufjs": "*"
   },
   "devDependencies": {
     "jsdoc": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "webpack": "^4.44.0",
+    "webpack-cli": "^3.3.12"
   }
 }
