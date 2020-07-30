@@ -1,8 +1,9 @@
-import { Blob } from "./util/blob";
+import { Blob } from "./util";
 import { Data } from "./data";
 import { Name } from "./name";
+import {Signature} from "./signature";
 
-export class Interest {
+export class Interest extends Signature{
     constructor(name?: Name|string);
     constructor(interest: Interest);
 

@@ -3,12 +3,15 @@ import {Interest} from "./interest";
 import {Name} from "./name";
 import {SyncPromise, Blob} from './util';
 import {Signature} from "./signature";
-import {WireFormat} from "./encoding/wire-format";
+import {WireFormat} from "./encoding";
 import {CertificateV2} from "./security/v2/certificate-v2";
 import {PibIdentity} from "./security/pib/pib-identity";
 import {PibKey} from "./security/pib/pib-key";
 import {KeyParams} from "./security/key-params";
 import {SigningInfo} from "./security/signing-info";
+import {Certificate} from "./security/certificate";
+import {PibImpl} from "./security/pib/pib-impl";
+import {Pib} from "./security/pib/pib";
 
 export class KeyChain {
     constructor();
@@ -908,21 +911,10 @@ export class KeyChain {
 }
 
 // no declaration because these types are rarely used
-export class Pib {
-}
-
-export class Certificate {
-
-}
-
 export class Tpm {
 }
 
 export class SafeBag {
-
-}
-
-export class PibImpl {
 
 }
 
