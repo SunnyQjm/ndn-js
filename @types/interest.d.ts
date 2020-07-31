@@ -2,6 +2,7 @@ import { Blob } from "./util";
 import { Data } from "./data";
 import { Name } from "./name";
 import {Signature} from "./signature";
+import {DelegationSet} from "./delegation-set";
 
 export class Interest extends Signature{
     constructor(name?: Name|string);
@@ -32,19 +33,3 @@ export class Interest extends Signature{
     wireEncode(): Blob;
 }
 
-export class DelegationSet {
-    size(): number;
-    get(i: number): DelegationSet.Delegation;
-    find(name: Name): number;
-
-    add(preference: number, name: Name): void;
-    remove(name: Name): boolean;
-    clear(): void;
-}
-
-export namespace DelegationSet {
-    class Delegation {
-        getPreference(): number;
-        getName(): Name;
-    }
-}

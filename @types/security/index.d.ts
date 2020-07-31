@@ -18,3 +18,4 @@ export * from './validator-config-error';
 export * from './validator-null';
 export * from './validity-period';
 export * from './verification-helpers';
+export * from './key-chain';

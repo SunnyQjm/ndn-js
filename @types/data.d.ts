@@ -1,6 +1,7 @@
 import {Blob} from "./util";
 import {Name} from "./name";
 import {Signature} from "./signature";
+import {MetaInfo} from "./meta-info";
 
 export class Data extends Signature {
     constructor(name?: Name | string);
@@ -39,24 +40,4 @@ export enum ContentType {
     KEY = 2,
     NACK = 3,
     OTHER_CODE = 0x7fff,
-}
-
-export class MetaInfo {
-    constructor(meta?: MetaInfo);
-
-    getType(): ContentType;
-
-    getOtherTypeCode(): number;
-
-    getFreshnessPeriod(): number;
-
-    getFinalBlockId(): Name.Component;
-
-    setType(type: ContentType): void;
-
-    setOtherTypeCode(otherTypeCode: number): void;
-
-    setFreshnessPeriod(freshness: number): void;
-
-    setFinalBlockId(comp: Name.Component): void;
 }
