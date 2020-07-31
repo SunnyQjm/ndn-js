@@ -2,7 +2,7 @@ import {Name} from "../name";
 import {SigningInfo} from "../security/signing-info";
 import {EncryptError} from "./encrypt-error";
 import {Validator} from "../security/v2/validator";
-import {KeyChain} from "../key-chain";
+import {KeyChain} from "../security/key-chain";
 import {Face} from "../face";
 import {Blob} from "../util";
 import {EncryptedContent} from "./encrypted-content";

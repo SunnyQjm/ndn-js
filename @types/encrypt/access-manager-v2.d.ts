@@ -30,7 +30,7 @@
  */
 import {PibIdentity} from "../security/pib/pib-identity";
 import {Name} from "../name";
-import {KeyChain} from "../key-chain";
+import {KeyChain} from "../security/key-chain";
 import {Face} from "../face";
 import {CertificateV2} from "../security/v2/certificate-v2";
 import {Data} from "../data";

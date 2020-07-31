@@ -1,6 +1,6 @@
 import {PibKey} from "../security/pib/pib-key";
 import {Validator} from "../security/v2/validator";
-import {KeyChain} from "../key-chain";
+import {KeyChain} from "../security/key-chain";
 import {Face} from "../face";
 import {EncryptedContent} from "./encrypted-content";
 import {Blob} from "../util";

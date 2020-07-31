@@ -1,6 +1,6 @@
 import {Name} from "../name";
 import {GroupManagerDb} from "./group-manager-db";
-import {KeyChain} from "../key-chain";
+import {KeyChain} from "../security/key-chain";
 import {Data} from "../data";
 import {SyncPromise} from "../util";
 import {Schedule} from "./schedule";

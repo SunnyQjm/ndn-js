@@ -1,5 +1,5 @@
 import {Face} from "../face";
-import {KeyChain} from "../key-chain";
+import {KeyChain} from "../security/key-chain";
 import {Name} from "../name";
 import {ConsumerDb} from "./consumer-db";
 import {Link} from "../link";

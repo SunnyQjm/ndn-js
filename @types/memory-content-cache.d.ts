@@ -1,7 +1,8 @@
 import { Data } from "./data";
-import { Face, ForwardingFlags, InterestFilter, OnInterestCallback } from "./face";
+import { Face, ForwardingFlags, OnInterestCallback } from "./face";
 import { Interest } from "./interest";
 import { Name } from "./name";
+import {InterestFilter} from "./interest-filter";
 
 export class MemoryContentCache {
     constructor(face: Face, cleanupIntervalMilliseconds?: number);

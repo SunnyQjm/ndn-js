@@ -1,6 +1,6 @@
 import {Name} from "../name";
 import {Face} from "../face";
-import {KeyChain} from "../key-chain";
+import {KeyChain} from "../security/key-chain";
 import {ProducerDb} from "./producer-db";
 import {Link} from "../link";
 import {Data} from "../data";

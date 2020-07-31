@@ -1,21 +1,72 @@
-import {Data} from "./data";
-import {Interest} from "./interest";
-import {Name} from "./name";
-import {SyncPromise, Blob} from './util';
-import {Signature} from "./signature";
-import {WireFormat} from "./encoding";
-import {CertificateV2} from "./security/v2/certificate-v2";
-import {PibIdentity} from "./security/pib/pib-identity";
-import {PibKey} from "./security/pib/pib-key";
-import {KeyParams} from "./security/key-params";
-import {SigningInfo} from "./security/signing-info";
-import {Certificate} from "./security/certificate";
-import {PibImpl} from "./security/pib/pib-impl";
-import {Pib} from "./security/pib/pib";
+import {Data} from "../data";
+import {Interest} from "../interest";
+import {Name} from "../name";
+import {SyncPromise, Blob} from '../util';
+import {Signature} from "../signature";
+import {WireFormat} from "../encoding";
+import {CertificateV2} from "./v2";
+import {PibIdentity} from "./pib";
+import {PibKey} from "./pib";
+import {KeyParams} from "./key-params";
+import {SigningInfo} from "./signing-info";
+import {Certificate} from "./certificate";
+import {PibImpl} from "./pib";
+import {Pib} from "./pib";
+import {IdentityManager} from "./identity";
+import {PolicyManager} from "./policy";
+import {SafeBag} from "./safe-bag";
+import {Tpm, TpmBackEnd} from "./tpm";
+import {NetworkNack} from "../network-nack";
+import Reason = NetworkNack.Reason;
 
 export class KeyChain {
     constructor();
+
+    /**
+     * A KeyChain provides a set of interfaces to the security library such as
+     * identity management, policy configuration and packet signing and verification.
+     * Note: This class is an experimental feature. See the API docs for more detail at
+     * http://named-data.net/doc/ndn-ccl-api/key-chain.html .
+     *
+     * There are four forms to create a KeyChain:
+     * KeyChain(pibLocator, tpmLocator, allowReset = false) - Create a KeyChain to
+     * use the PIB and TPM defined by the given locators, which creates a security
+     * v2 KeyChain that uses CertificateV2, Pib, Tpm and Validator (instead of v1
+     * Certificate, IdentityStorage, PrivateKeyStorage and PolicyManager).
+     * KeyChain(identityManager, policyManager = null) - Create a security v1
+     * KeyChain to use the optional identityManager and policyManager.
+     * KeyChain(pibImpl, tpmBackEnd, policyManager = null) - Create a security v2
+     * KeyChain with explicitly-created PIB and TPM objects, and that optionally
+     * still uses the v1 PolicyManager.
+     * Finally, the default constructor KeyChain() creates a KeyChain with the
+     * default PIB and TPM, which are platform-dependent and can be overridden
+     * system-wide or individually by the user. The default constructor creates a
+     * security v2 KeyChain that uses CertificateV2, Pib, Tpm and Validator.
+     * However, if the default security v1 database file still exists, and the
+     * default security v2 database file does not yet exists, then assume that the
+     * system is running an older NFD and create a security v1 KeyChain with the
+     * default IdentityManager and a NoVerifyPolicyManager.
+     * @param {string} pibLocator The PIB locator, e.g., "pib-sqlite3:/example/dir".
+     * @param {string} tpmLocator The TPM locator, e.g., "tpm-memory:".
+     * @param {boolean} allowReset (optional) If True, the PIB will be reset when
+     * the supplied tpmLocator mismatches the one in the PIB. If omitted, don't
+     * allow reset.
+     * @param {IdentityManager} identityManager (optional) The identity manager as a
+     * subclass of IdentityManager. If omitted, use the default IdentityManager
+     * constructor.
+     * @param {PolicyManager} policyManager: (optional) The policy manager as a
+     * subclass of PolicyManager. If omitted, use NoVerifyPolicyManager.
+     * @param {PibImpl} pibImpl An explicitly-created PIB object of a subclass of
+     * PibImpl.
+     * @param {TpmBackEnd} tpmBackEnd: An explicitly-created TPM object of a
+     * subclass of TpmBackEnd.
+     * @throws SecurityException if this is not in Node.js and this uses the default
+     * IdentityManager constructor. (See IdentityManager for details.)
+     * @constructor
+     */
     constructor(pibLocator: string, tpmLocator: string, allowReset?: boolean);
+    constructor(pibImpl: PibImpl, tpmBackEnd: TpmBackEnd, policyManager?: PolicyManager);
+
 
     static getDefaultKeyParams(): KeyParams;
 
@@ -908,20 +959,4 @@ export class KeyChain {
      * @return {boolean} True if the signature verifies, otherwise false.
      */
     verifyInterestWithHmacWithSha256(interest: Interest, key: Blob, wireFormat?: WireFormat): boolean;
-}
-
-// no declaration because these types are rarely used
-export class Tpm {
-}
-
-export class SafeBag {
-
-}
-
-export class TpmBackEnd {
-
-}
-
-export class Reason {
-
 }

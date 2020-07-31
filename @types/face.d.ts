@@ -1,7 +1,7 @@
 import {Blob} from "./util";
 import {Data} from "./data";
 import {Interest} from "./interest";
-import {KeyChain} from "./key-chain";
+import {KeyChain} from "./security";
 import {Name} from "./name";
 import {NetworkNack} from "./network-nack";
 import {Transport, TransportConnectionInfo} from "./transport";
