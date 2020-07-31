@@ -19,7 +19,6 @@ export * from './in-memory-storage';
 export * from './lp';
 export * from './security';
 export * from './sync';
-export * from './transport';
 export * from './control-parameters';
 export * from './control-response';
 export * from './delegation-set';
@@ -31,4 +30,3 @@ export * from './link';
 export * from './log';
 export * from './memory-content-cache';
 export * from './meta-info';
-export * from './'
